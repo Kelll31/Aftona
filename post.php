@@ -52,7 +52,7 @@ require_once 'connect.php';
             $x = 0;
             $lines = 1022;
             $lines = mysqli_query( $conn, "SELECT CONVERT(COUNT(id), INT) FROM `instagram`;");
-            while($x < 5){
+            while($x < 1){
             echo '
             <div class="post">
                 <div class="info">
@@ -75,7 +75,7 @@ require_once 'connect.php';
                 
                 <div class="post-content">
                     <div class="reaction-wrapper">
-                        <button name="myActionName" value="0"><img src="img/like.PNG" class="icon" alt=""></button>
+                        <button type="button" onClick="onClick()"><img src="img/like.PNG" class="icon" alt=""></button>
                         <button name="myActionName" value="1"><img src="img/dislike.PNG" class="icon" alt=""></button>
                         <img src="img/comment.PNG" class="icon" alt="">
                         <img src="img/send.PNG" class="icon" alt="">
@@ -87,8 +87,10 @@ require_once 'connect.php';
                             $data = mysqli_query( $conn, "SELECT `data` FROM `instagram` WHERE id = $x" );
                             while ($row = $likes->fetch_assoc()) {
                                 $newlikes = $likes;
-                                echo ' <p class="likes">'. $row['likes'] .' likes </p>';
+                                echo ' <p class="likes">'. $row['likes']. ' </p>';
+                                
                             }
+                    
                             while ($row = $comment->fetch_assoc()) {
                                 echo ' <p class="description"><span>Xlebysllek</span>'. $row['comment']. ' </p>';
                             }
@@ -98,17 +100,17 @@ require_once 'connect.php';
                             if (isset($_POST['myActionName'])) {
                                 switch ($_POST['myActionName']) {
                                 case '0':
-                                    mysqli_query( $conn, "UPDATE `instagram` SET `likes`= 999 WHERE id = $x");
-                                    header("Location: post.php");
-                                    echo ' <p class="likes">'. $newlikes .' likes </p>';
+                                    mysqli_query( $conn, "UPDATE `instagram` SET `likes`= 554  WHERE id = $x");
                                 
                                 break;
                                 case '1':
                                     mysqli_query( $conn, "UPDATE `instagram` SET `likes`= 666 WHERE id = $x");
-                                    header("Location: post.php");
                                 break;
                                 }
                             }
+
+                            
+                            
                 
                 echo '
                 </div>
@@ -123,12 +125,13 @@ require_once 'connect.php';
             }
            
             ?>
+            
             </form>
             <?php
                 
             ?>
-
-            
+        
+            </script>            
         </div>
     </div>
 </section>

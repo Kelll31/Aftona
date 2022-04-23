@@ -103,9 +103,7 @@ require_once 'connect.php';
       </div>
 
 <!-- Пост -->
-        <div class="left-col">
-   
-        <input type="submit" value="Submit" name="button">       
+        <div class="left-col">    
             
 
             <?php
