@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en"></html>
-
 <?php
 
 require_once 'connect.php';
@@ -24,13 +23,35 @@ require_once 'connect.php';
 
 
 <head> 
+<script type='text/javascript'>
+  function encodeImageFileAsURL() {
+
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+
+      var fileReader = new FileReader();
+
+      fileReader.onload = function(fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+        var newImage = document.createElement('img');
+        newImage.src = srcData;
+
+        document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+        //alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+        console.log(document.getElementById("imgTest").innerHTML);
+      }
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
+</script>
 <title>Upload | NO INSTAGRAMM</title>
 <script src="main_ifyes.php"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-	<title>Студак</title>
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
     
     <link rel="stylesheet" href="css/main.min.css">
@@ -88,13 +109,14 @@ require_once 'connect.php';
   
 
 <!-- Пост -->
+
         <div class="left-col">
 
             <div class="post">
             <form enctype="multipart/form-data" method="post">
                 <div class="info">
                     <div class="user">
-                        <p class="mid-box"><font color="red">NO</font>INSTARGAM ждет твой новый пост</p>
+                        <p class="mid-box"><font color="red">NO</font>INSTARGAM - это анонимно</p>
                     </div>
                     <ul id="nnavv">
                         <li> <div class="nav-items"> <img src="img/option.PNG" class="options" alt=""></div>
@@ -108,21 +130,22 @@ require_once 'connect.php';
                 </div>
                 
 
-  
-                <img src="img/cover 2.png" class="post-image" alt="">
+
+                <p id="imgTest" ><img src=""  class="post-image" alt=""></p>
                 <div class="post-content">
                     <p class="likes">Интерестно, сколько ты наберешь лайков.</p>
                     <p class="description"><input type="text" class="comment-box" placeholder="Можешь добавить описание"></p>
                     <p class="post-time">сейчас</p>
                 </div>
                 <div class="comment-wrapper">
-                    <p><input type="file" name="f">
+                    <p><input type="file" id="inputFileToLoad" onchange="encodeImageFileAsURL();">
+                    
                     <input class="comment-btn" type="submit" value="Запостить"></p>
                 </div>
             </div>
             </form> 
-
-        </div>
+ 
+    </div>
     </div>
 </section>
 

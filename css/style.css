@@ -15,6 +15,12 @@ body{
     background: #fafafa;
     position: relative;
     font-family: 'roboto', sans-serif;
+    margin-bottom: 0;
+}
+    p {
+    margin-top: 0;
+    margin-bottom: 0; 
+    
 }
 button{
     background: #000;
@@ -125,9 +131,10 @@ button{
     padding: 10px;
     padding-right: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden;
     overflow-x: auto;
+    justify-content: space-around;
 }
 
 .status-wrapper::-webkit-scrollbar{

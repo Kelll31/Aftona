@@ -46,29 +46,13 @@ require_once 'connect.php';
     <div class="nav-wrapper">
         <a href=index.php class="brand-img"><img src="img/logo.png" class="brand-img" alt=""></a>
         <input type="text" class="search-box" placeholder="Поиск">
+        
         <div class="nav-items">
 
         <ul id="nnavv">
-                <li> <div class="nav-items"> <img src="img/home.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">
-                        <li><a href=#>Субменю №1 первого меню</a></li>
-                    </ul>
-                </li>
-                <li> <div class="nav-items"> <img src="img/messenger.PNG" class="icon" alt=""></div>
-                </li>
                 <li> <div class="nav-items"> <a href=upload.php class="icon"> <img src="img/add.PNG"  class="icon" alt=""></a></div> 
                 </li>
-                <li> <div class="nav-items"> <img src="img/explore.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">
-                        <li><a href=#>Субменю №3 третьего меню</a></li>
-                    </ul>
-                </li>
-                <li> <div class="nav-items"> <img src="img/like.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">                        
-                    <li><a href=#>Мои лайки</a></li>
-                    <li><a href=#>Новое?</a></li>
-                    </ul>
-                </li>
+               
             </ul>
             <div class="icon user-profile"></div>
             
@@ -76,96 +60,129 @@ require_once 'connect.php';
 
         </div>
     </div>
-
     
 
 
 
 </nav>
-
+<p class="mid-box">Лучшее из <font color="red">NO</font>INSTARGAM</p>
 <!-- Истории -->
 <section class="main">
   <div class="wrapper">
       <div class="left-col">
           <div class="status-wrapper">
+          
               <div class="status-card">
                   <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
-                  <p class="username">Xlebysllek</p>
+                  <p class="username">Anon №1</p>
               </div>
               <div class="status-card">
-                  <div class="profile-pic"><img src="img/cover 2.png" alt=""></div>
-                  <p class="username">negger</p>
+                  <div class="profile-pic"><iframe width="70" height="70" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+                  <p class="username">Anon №2</p>
               </div>
               <div class="status-card">
                   <div class="profile-pic"><img src="img/cover 3.png" alt=""></div>
-                  <p class="username">freeland</p>
+                  <p class="username">Anon №3</p>
               </div>
       </div>
 
 <!-- Пост -->
-        <div class="left-col">    
+    <div class="left-col">    
             
 
-            <?php
-            $x = 0;
-            $lines = 1022;
-            $lines = mysqli_query( $conn, "SELECT CONVERT(COUNT(id), INT) FROM `instagram`;");
-            while($x < 5){
-            echo '
-            <div class="post">
-                <div class="info">
-                    <div class="user">
-                        <div class="profile-pic">
-                       <img src="img/cover 1.png" alt="">
-                    </div>
-                        <p class="username">kelll31 tech</p>
-                    </div>
-                    
-                    <img src="img/option.PNG" class="options" alt="">
-                </div>
-                ';
-                        $image = mysqli_query( $conn, "SELECT `filename` FROM `instagram` WHERE id = $x" );
-                        while ($row = $image->fetch_assoc()) {
-                            echo '<img src="'. $row['filename']. ' " class="post-image" alt="" >';
-                        }
-                ?>     
-                <div class="post-content">
-                    <div class="reaction-wrapper">
-                        <img src="img/like.PNG" class="icon" alt="">
-                        <img src="img/comment.PNG" class="icon" alt="">
-                        <img src="img/send.PNG" class="icon" alt="">
-                        <img src="img/save.PNG" class="save icon" alt="">
-                    </div>
+            <form method="POST">
                 <?php
-                            $likes = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x" );
-                            $comment = mysqli_query( $conn, "SELECT `comment` FROM `instagram` WHERE id = $x" );
-                            $data = mysqli_query( $conn, "SELECT `data` FROM `instagram` WHERE id = $x" );
-                            while ($row = $likes->fetch_assoc()) {
-                                echo ' <p class="likes">'. $row['likes']. ' likes </p>';
-                            }
-                            while ($row = $comment->fetch_assoc()) {
-                                echo ' <p class="description"><span>Xlebysllek</span>'. $row['comment']. ' </p>';
-                            }
-                            while ($row = $data->fetch_assoc()) {
-                                echo ' <p class="post-time">'. $row['data']. ' </p>'; 
-                            }
-                            //flex
-                
-                echo '
-                </div>
-                <div class="comment-wrapper">
-                    <img src="img/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Написать коментарий">
-                    <button class="comment-btn">отправить</button>
-                </div>
-            </div>
-            ';
-            $x = $x + 1;
-            }
-            ?>
+                    $x = 1;
+                    $lines = 1022;
+                    $lines = mysqli_query( $conn, "SELECT MAX(id) FROM `instagram` WHERE 1");
+                    
+                    while($x < 7){
+                    echo '
+                    <div class="post">
+                        <div class="info">
+                            <div class="user">
+                                <div class="profile-pic">
+                            <img src="img/cover 1.png" alt="">
+                            </div>
+                            <p class="username">№';
+                ?>  
+                <?php       
+                    echo ' '. $x .'
+                                 </p>
+                            </div>
+                            
+                            <img src="img/option.PNG" class="options" alt="">
+                        </div>
+                        ';
+                                $image = mysqli_query( $conn, "SELECT `filename` FROM `instagram` WHERE id = $x" );
+                                while ($row = $image->fetch_assoc()) {
+                                    echo '<img src="'. $row['filename']. ' " class="post-image" alt="" >';
+                    }
+                        ?>     
 
+                        
+                        <div class="post-content">
+                            <div class="reaction-wrapper">
+                                <button name="myActionName" value="0"><img src="img/like.PNG" class="icon" alt=""></button>
+                                <button name="myActionName" value="1"><img src="img/dislike.PNG" class="icon" alt=""></button>
+                                <img src="img/comment.PNG" class="icon" alt="">
+                                <img src="img/send.PNG" class="icon" alt="">
+                                <img src="img/save.PNG" class="save icon" alt="">
+                            </div>
+                        <?php
+                                    $likes = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x" );
+                                    $comment = mysqli_query( $conn, "SELECT `comment` FROM `instagram` WHERE id = $x" );
+                                    $data = mysqli_query( $conn, "SELECT `data` FROM `instagram` WHERE id = $x" );
+                                    while ($row = $likes->fetch_assoc()) {
+                                        $newlikes = $likes;
+                                        echo ' <p class="likes">'. $row['likes']. ' </p>';
+                                        
+                                    }
+                                    while ($row = $comment->fetch_assoc()) {
+                                        echo ' <p class="description"><span>Xlebysllek</span>'. $row['comment']. ' </p>';
+                                    }
+                                    while ($row = $data->fetch_assoc()) {
+                                        echo ' <p class="post-time">'. $row['data']. ' </p>';
+                                    }
+                                    if (isset($_POST['myActionName'])) {
+                                        switch ($_POST['myActionName']) {
+                                        case '0':
+                                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x");
+                                            while ($row = mysqli_fetch_assoc($result))
+                                            {
+                                                $ff =  $row['likes'] + 1;
+                                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = $x"); 
+                                            }
+                                        break;
+                                        case '1':
+                                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x");
+                                            while ($row = mysqli_fetch_assoc($result))
+                                            {
+                                                $ff =  $row['likes'] - 1;
+                                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = $x"); 
+                                            }
+                                        break;
+                                        }
+                                    }
 
+                                    
+                                    
+                        
+                        echo '
+                        </div>
+                        <div class="comment-wrapper">
+                            <img src="img/smile.PNG" class="icon" alt="">
+                            <input type="text" class="comment-box" placeholder="Написать коментарий">
+                            <button class="comment-btn">отправить</button>
+                        </div>
+                    </div>
+                    ';
+                    $x = $x + 1;
+                    }
             
+                ?>
+                
+            </form>    
         </div>
     </div>
 </section>

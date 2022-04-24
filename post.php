@@ -49,10 +49,10 @@ require_once 'connect.php';
                    
         <form method="POST">
             <?php
-            $x = 0;
+            $x = 1;
             $lines = 1022;
             $lines = mysqli_query( $conn, "SELECT CONVERT(COUNT(id), INT) FROM `instagram`;");
-            while($x < 1){
+            while($x < 2){
             echo '
             <div class="post">
                 <div class="info">
@@ -75,7 +75,7 @@ require_once 'connect.php';
                 
                 <div class="post-content">
                     <div class="reaction-wrapper">
-                        <button type="button" onClick="onClick()"><img src="img/like.PNG" class="icon" alt=""></button>
+                        <button name="myActionName" value="0"><img src="img/like.PNG" class="icon" alt=""></button>
                         <button name="myActionName" value="1"><img src="img/dislike.PNG" class="icon" alt=""></button>
                         <img src="img/comment.PNG" class="icon" alt="">
                         <img src="img/send.PNG" class="icon" alt="">
@@ -90,7 +90,6 @@ require_once 'connect.php';
                                 echo ' <p class="likes">'. $row['likes']. ' </p>';
                                 
                             }
-                    
                             while ($row = $comment->fetch_assoc()) {
                                 echo ' <p class="description"><span>Xlebysllek</span>'. $row['comment']. ' </p>';
                             }
@@ -100,11 +99,20 @@ require_once 'connect.php';
                             if (isset($_POST['myActionName'])) {
                                 switch ($_POST['myActionName']) {
                                 case '0':
-                                    mysqli_query( $conn, "UPDATE `instagram` SET `likes`= 554  WHERE id = $x");
-                                
+                                    $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x");
+                                    while ($row = mysqli_fetch_assoc($result))
+                                    {
+                                        $ff =  $row['likes'] + 1;
+                                        mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = $x"); 
+                                    }
                                 break;
                                 case '1':
-                                    mysqli_query( $conn, "UPDATE `instagram` SET `likes`= 666 WHERE id = $x");
+                                    $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = $x");
+                                    while ($row = mysqli_fetch_assoc($result))
+                                    {
+                                        $ff =  $row['likes'] - 1;
+                                        mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = $x"); 
+                                    }
                                 break;
                                 }
                             }
