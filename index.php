@@ -109,7 +109,7 @@ require_once 'connect.php';
 
             <form method="POST">
                 <?php
-                    $x = 8;
+                    $x = 9;
                     $lines = 1022;
                     $lines = mysqli_query( $conn, "SELECT MAX(id) FROM `instagram` WHERE 1");
                     
@@ -119,7 +119,7 @@ require_once 'connect.php';
                         <div class="info">
                             <div class="user">
                                 <div class="profile-pic">
-                            <img src="img/cover 1.png" alt="">
+                            <img src="img/cover '.$x.'.png" alt="">
                             </div>
                             <p class="username">№';
                 ?>  
@@ -262,10 +262,23 @@ require_once 'connect.php';
                                 mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 8"); 
                             }
                                 break;
+                        case '9':
+                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = 9");
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $ff =  $row['likes'] + 1;
+                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 9"); 
+                            }
+                                break;
+                        case '10':
+                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = 9");
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $ff =  $row['likes'] + 1;
+                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 9"); 
+                            }
+                                break;
                     }
                 }
-
-
+                
 
                 if (isset($_POST['myActionNameminus'])) {
                     switch ($_POST['myActionNameminus']) {
@@ -332,7 +345,22 @@ require_once 'connect.php';
                             mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 8"); 
                         }
                             break;
+                    case '9':
+                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = 9");
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $ff =  $row['likes'] - 1;
+                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 9"); 
+                            }
+                                break;
+                    case '10':
+                            $result = mysqli_query( $conn, "SELECT `likes` FROM `instagram` WHERE id = 9");
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $ff =  $row['likes'] - 1;
+                                mysqli_query( $conn, "UPDATE `instagram` SET `likes`='$ff' WHERE id = 9"); 
+                            }
+                                break;
                 }
+                
                 }
                 ?>
                 

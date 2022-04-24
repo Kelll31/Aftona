@@ -70,26 +70,10 @@ require_once 'connect.php';
         <div class="nav-items">
 
         <ul id="nnavv">
-                <li> <div class="nav-items"> <img src="img/home.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">
-                        <li><a href=#>Функция 1</a></li>
-                    </ul>
-                </li>
-                <li> <div class="nav-items"> <img src="img/messenger.PNG" class="icon" alt=""></div>
-                </li>
+               
                 <li> <div class="nav-items"> <img src="img/add.PNG" class="icon" alt=""></div>
                 </li>
-                <li> <div class="nav-items"> <img src="img/explore.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">
-                        <li><a href=#>Функция 2</a></li>
-                    </ul>
-                </li>
-                <li> <div class="nav-items"> <img src="img/like.PNG" class="icon" alt=""></div>
-                    <ul class="ssubmenuu">                        
-                    <li><a href=#>Мои лайки</a></li>
-                    <li><a href=#>Обновления друзей</a></li>
-                    </ul>
-                </li>
+                
             </ul>
             <div class="icon user-profile"></div>
             
