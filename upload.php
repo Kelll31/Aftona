@@ -132,16 +132,30 @@ require_once 'connect.php';
 
 
                 <p id="imgTest" ><img src=""  class="post-image" alt=""></p>
+                <?php
+                    $comeent = "не определено";
+                    $url = "не определен";                
+                    $comeent = $_POST["comment"];                              
+                    $url = $_POST["url"];
+
+                mysqli_query( $conn, "INSERT INTO `instagram`(`id`, `filename`, `comment`, `likes`, `data`) VALUES ('','$url','$comeent','0','')");
+                ?>
+                <form action="index.php" method="post">
                 <div class="post-content">
                     <p class="likes">Интерестно, сколько ты наберешь лайков.</p>
-                    <p class="description"><input type="text" class="comment-box" placeholder="Можешь добавить описание"></p>
+                    <p class="description"><input type="text" name="comment" class="comment-box" placeholder="Можешь добавить описание"></p>
                     <p class="post-time">сейчас</p>
+                
                 </div>
                 <div class="comment-wrapper">
-                    <p><input type="file" id="inputFileToLoad" onchange="encodeImageFileAsURL();">
+                    <p><input type="file" name="blob" id="inputFileToLoad" onchange="encodeImageFileAsURL();">                    
+                    <input type="text" name="url" class="comment-box" placeholder="Или просто вставь ссылку на фото">
                     
                     <input class="comment-btn" type="submit" value="Запостить"></p>
                 </div>
+                </form>
+                
+
             </div>
             </form> 
  
